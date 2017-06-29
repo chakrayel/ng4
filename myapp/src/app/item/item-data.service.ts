@@ -25,7 +25,7 @@ export class ItemDataService implements OnInit{
     this.ngOnInit();
     return this.wordsArr;
   }
- // is called only for @Directives/@Components
+ // is called only for @Directives/@Components not serivce components
  public ngOnInit() : void {
       console.log("ItemDataService ngOnInit");
    // the function push(...params) has a rest operator ...params

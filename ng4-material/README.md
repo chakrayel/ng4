@@ -1,3 +1,7 @@
+- This app built using ng4 Material https://material.angular.io/components.
+- Demonstrates Component->ServiceClass->HttpObservable
+- Displays first 10 photos using off-the-shelf components <md-toolbar>, <md-menu>, <md-icon>,<md-card> etc
+
 # Ng4Material
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.1.
