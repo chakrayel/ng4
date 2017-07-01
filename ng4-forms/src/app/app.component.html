@@ -1,0 +1,36 @@
+<div *ngIf="!name; else reactiveFormInfo">
+ <!-- Here is where the form goes; it is displayed when AppComponent.name is no values-->
+ <form [formGroup]="reactiveForm" (ngSubmit)="addPost(reactiveForm.value)">
+   <div class="form-container">
+     <div class="row columns">
+       <h1> Reactive Forms </h1>
+      <label>Name
+       <input type="text" formControlName="name">
+     </label>
+     <div class="alert" *ngIf="isValidName()"> {{titleAlertName}}</div>
+
+     <label>Description
+      <textarea formControlName="description"></textarea>
+    </label>
+    <div class="alert" *ngIf="isValidDesc()"> Min 30 and max 500 chars</div>
+
+    <label for="validateCheckbox">Min of 3 chars for Name field</label>
+    <input type="checkbox" name="validateCheckbox" formControlName="validateCheckbox" value="1">on
+
+    <input type="submit" class="button expanded" value="Submit form" [disabled]="!reactiveForm.valid">
+     </div>
+   </div>
+ </form>
+</div>
+<!--
+ template #reactiveFormInfo below is displayed if AppComponent.name exists and has value
+ i:e after form submission, template below is shown
+ -->
+<ng-template #reactiveFormInfo>
+  <div class="form-container">
+    <div class="row columns">
+      <h1> {{name}} </h1>
+      <p> {{description}} <p>
+   </div>
+ </div>
+ </ng-template>
