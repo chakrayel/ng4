@@ -1,15 +1,18 @@
 import { Component, ViewChildren, ViewChild, QueryList } from '@angular/core';
 import { MdMenuTrigger, MdMenuItem } from '@angular/material';
 import { JsonPhotoService } from './service/json-photo.service';
-
+// You can specify providers:[JsonPhotoService] at @NgModule level, then that providers are used at @Component level
+// if you want to override @NgModule level, then specify them at @Component level
+// These options are useful for injecting mockServices and avoiding multiple changes at every component
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers:[JsonPhotoService]
+  styleUrls: ['./app.component.css']
+
+  //providers:[JsonPhotoService]
 })
 export class AppComponent {
-  title = 'app';
+  title = 'app title';
 
   photos: Array<any>;
 
@@ -24,7 +27,7 @@ export class AppComponent {
   constructor(private jsonPhotoService: JsonPhotoService) {
 //this.trigger.openMenu();
   }
-  // child components and are available at this lifecyle hook.
+  // child components are not available at this lifecyle hook.
   // Takeaway:- ngOnInit displays databound properties and intilializes input properties
   // but children are still not yet fecthed and assigned to trigger: MdMenuTrigger;
   // so eagerly looking to use @ViewChild elements in lifecycle ngOnInit() won't work
@@ -38,7 +41,7 @@ export class AppComponent {
   }
  // my idea of openMenu on view display did not work with this lifecycle method
  // console three error that MdMenuTrigger.menu as undefined then I relaized after all
- // @ViewChildren elements aren't fecthed by Angular at ngOnInit() lifecycle hook
+ // @ViewChildren elements aren't fecthed by Angular at ngOnInit() lifecycle hook.
  // Best practice call HTTP service in ngOnInit rather than in component's constructor
   ngOnInit() {
     this.jsonPhotoService.fetchPhotos()

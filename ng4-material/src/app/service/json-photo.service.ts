@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
-
+// Normally @Injectable() isn't required if Service itself has no deps to be injected
+// But in this case Service needs Http object to be injected!!
 @Injectable()
 export class JsonPhotoService {
   private myData:Array<any>;

@@ -74,22 +74,27 @@ wfwe
 <h1>Item's List</h1>
   <div class="addItem">
     <!-- there is no point in using [value]=newItem here because even though you have newItem property bound to
-   input.value i:e newItem value is going into input.value,
-   But you have no way of getting input.value in AppComponent unless you reachout to DOM and get Input element.
-   if you are using <button (click)="pushItem(newItem)" as well, you are still reading AppComponent.newItem
-   but not user entered value. Because the moment user enters a value in Input you are not bining it newItem.
-   Unless onChangeHandler with event assigns newItem=$event.target.value
+   input.value i:e AppComponent.newItem value going into <input value=newItemVal>,
+   you have no way of getting user entered <input value="user entered val" into AppComponent unless you
+   reachout to DOM and get <input> element.
+   if you are using <button (click)="pushItem(newItem)", you are still reading AppComponent.newItem
+   but not the user entered <input value="user entered val">.
+   Because the moment user enters a value in <input> ng4 is not bining to AppComponent.newItem,
+   you can however bind <input value="user entered val"> by using onChangeHandler with
+   event assignment newItem=$event.target.value
+
      <input [value] = "newItem"  (change)="newItem=$event.target.value" "placeholder="Add Item"  class="addText">
      <button (click)="pushItem(newItem)">Add</button>
      AppComponent.newItem value is now bound to Input.value
-     When user entered value in <input (change)="newItem=$event.target.value" updates AppComponent.newItem with user entred value
-     <button (click)="pushItem(newItem)" pushItem now has access to up-to-date newItem variable
-     This really avoids importing formsModule in AppModule
+     When user entered value in html <input value="user entered val"> then (change)="newItem=$event.target.value"
+     updates AppComponent.newItem to "user entred val"
+     <button (click)="pushItem(newItem)" pushItem() now has access to up-to-date newItem variable
+     This avoids importing formsModule in AppModule
 
-    Alternative to all this is use banana-in the box [(ngModel)] = "newItem" so that
+    Alternative to this is to use banana-in the box [(ngModel)] = "newItem" so that
     AppComponent.newItem is updated with user entered value by ng4 fwrk.
     Ofcourse dont forget to import FormsModule in AppModule
-    [comp-prop] = "provides a space for typecript variable from the underlying component"
+    [comp-prop] = "provides a space for typecript variable from the underlying ng4 @Component or native html comp"
     [comp-prop] = "result of the expression's value is assigned to comp-prop"
     (handler)="typecript expressions here such as assignment $event object exposed ng are available here"
    -->
@@ -101,6 +106,7 @@ wfwe
   <!-- NOT item in items - this really messes up things it is fucnking item of items -->
   <li *ngFor="let item of items; let ind = index">
          {{item}}
+         <input [value] = "item" placeholder="Read Item" [disabled]=true  class="addText">
        <span (click)="removeItem(ind)">x</span>
   </li>
 </ul>

@@ -1,0 +1,38 @@
+<!--The whole content below can be removed with the new code.-->
+<div class="container">
+<div class="jumbotron">
+  <h1>ng4 bootstrap</h1>
+  <h2>sample test</h2>
+</div>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Panel Heading
+  </div>
+  <div class="panel-body">
+    <h3>Panel Body: {{title}}</h3>
+  </div>
+</div>
+
+<ngb-tabset (tabChange)="openAlert($event)">
+  <ngb-tab title="Simple">
+    <ng-template ngbTabContent>
+      <p>Simple tab content</p>
+      <ngb-alert *ngIf="simpleAlert" (close)="closeAlert($event)" [dismissible]="true">
+        <strong>Warning!</strong> Better check yourself, you're not looking too good.
+      </ngb-alert>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="">
+    <ng-template ngbTabTitle><b>Fancy</b> title</ng-template>
+    <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
+      <p>Fancy tab content</p>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Disabled" [disabled]="true">
+    <ng-template ngbTabContent>
+      <p>Disabled tab content</p>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
+
+</div>
