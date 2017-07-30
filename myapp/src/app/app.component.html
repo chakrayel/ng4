@@ -1,0 +1,126 @@
+<!--The whole content below can be removed with the new code.-->
+<div style="text-align:center">
+  <h1 [class.red-title]="titleClass">
+    <!--
+    Binding directly to 'class' attr of <h1>
+    <h1 [class]="titleClass">
+    In this case AppComponent.titleClass: string = "red-title"
+     Note the type difference for titleClass variable
+    <h1 [class.red-title]="titleClass">
+    In this case AppComponent.titleClass: boolean = true|false
+  -->
+    Welcome to {{title}}!!
+  </h1>
+  <!-- Elvis operator checks if titleStyle==true or if titleStyle is variable that exists -->
+
+  <h3 [style.color]="titleStyle ? 'yellow' : 'pink'">H3 title</h3>
+
+  <h5 [ngStyle]="titleStyles">H3 title</h5>
+
+  <h4 [ngClass]="titleClasses">H4 title</h4>
+
+
+  <!-- Always refer to NG API when using ng*
+  because Angular APIs provide many options to specify options
+-->
+
+  <img width="300" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo=" />
+</div>
+<h2>Links to help get start: </h2>
+<ul>
+  <li>
+    <h2><a target="_blank" href="https://angular.io/docs/ts/latest/tutorial/">Tour of Heroes</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" href="http://angularjs.blogspot.ca/">Angular blog</a></h2>
+  </li>
+</ul>
+<a [routerLink]="['/member']">Member</a>
+<a [routerLink]="['/product']">Product</a>
+<!--
+<router-outlet> is the section of the page where you want to render either the member or product component
+ -->
+<router-outlet></router-outlet>
+<br>
+<!-- private variable is accessible in html template contrary to private modifier -->
+_age = {{_age}} <br>
+<!--
+{{age}} is calling get age() which is initally 32
+However {{setMyAge(42)}} is chaging obj.age to 42.
+Now Angular has to keep the view model up-to-date and refreshes  entire view/template again
+In the process it also throws ExpressionChangedAfterItHasBeenCheckedError
+For a brief period {{age}} is 32 but because Angular refreshes entire view after {{setMyAge(42)}},
+{{age}} displays 42
+So Anguar keeps watch on the view/template model in a background loop and updates immediately
+which could cause perf issues should the cycle involve costly functions.
+-->
+age = {{age}} <br>
+<!-- you can invoke methods directly from html template and pass params from double curly barces
+{{setMyAge(42)}}
+-->
+
+{{getMyAge()}} asefasf
+<!--
+setter method in type script seems not to recognize it from html template
+{{age(53)}}
+
+-->
+wfwe
+
+<div class="main">
+<h1>Item's List</h1>
+  <div class="addItem">
+    <!-- there is no point in using [value]=newItem here because even though you have newItem property bound to
+   input.value i:e AppComponent.newItem value going into <input value=newItemVal>,
+   you have no way of getting user entered <input value="user entered val" into AppComponent unless you
+   reachout to DOM and get <input> element.
+   if you are using <button (click)="pushItem(newItem)", you are still reading AppComponent.newItem
+   but not the user entered <input value="user entered val">.
+   Because the moment user enters a value in <input> ng4 is not bining to AppComponent.newItem,
+   you can however bind <input value="user entered val"> by using onChangeHandler with
+   event assignment newItem=$event.target.value
+
+     <input [value] = "newItem"  (change)="newItem=$event.target.value" "placeholder="Add Item"  class="addText">
+     <button (click)="pushItem(newItem)">Add</button>
+     AppComponent.newItem value is now bound to Input.value
+     When user entered value in html <input value="user entered val"> then (change)="newItem=$event.target.value"
+     updates AppComponent.newItem to "user entred val"
+     <button (click)="pushItem(newItem)" pushItem() now has access to up-to-date newItem variable
+     This avoids importing formsModule in AppModule
+
+    Alternative to this is to use banana-in the box [(ngModel)] = "newItem" so that
+    AppComponent.newItem is updated with user entered value by ng4 fwrk.
+    Ofcourse dont forget to import FormsModule in AppModule
+    [comp-prop] = "provides a space for typecript variable from the underlying ng4 @Component or native html comp"
+    [comp-prop] = "result of the expression's value is assigned to comp-prop"
+    (handler)="typecript expressions here such as assignment $event object exposed ng are available here"
+   -->
+    <!-- <input [(ngModel)] = "newItem"  placeholder="Add Item"   class="addText">-->
+    <input [value] = "newItem" (change)="newItem=$event.target.value" placeholder="Add Item"   class="addText">
+    <button (click)="pushItem(newItem)">Add</button>
+  </div>
+<ul>
+  <!-- NOT item in items - this really messes up things it is fucnking item of items -->
+  <li *ngFor="let item of items; let ind = index">
+         {{item}}
+         <input [value] = "item" placeholder="Read Item" [disabled]=true  class="addText">
+       <span (click)="removeItem(ind)">x</span>
+  </li>
+</ul>
+<p *ngIf="!isTrue; then firstTemp else secondTemp">Hello</p>
+<ng-template #firstTemp>First Template</ng-template><br>
+<ng-template #secondTemp>Second Template</ng-template><br>
+
+numbersArray {{numbersArray | sortPipe:"desc"}}
+
+
+  <ul>
+  <li *ngFor="let word of words; let ind = index">
+         {{word}}
+       <span (click)="removeItem(ind)">x</span>
+  </li>
+</ul>
+</div>

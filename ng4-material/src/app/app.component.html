@@ -1,0 +1,40 @@
+<md-toolbar color="primary">
+  <span (click)="templateMethodCall()">Custom Toolbar</span>
+  <span class="example-spacer"></span>
+  <button md-button [mdMenuTriggerFor]="appMenu">
+   <md-icon>menu</md-icon>
+   Menu
+</button>
+</md-toolbar>
+
+<md-menu #appMenu="mdMenu">
+  <button md-menu-item>
+    <md-icon> dialpad </md-icon>
+    <span> Redial </span>
+  </button>
+  <button md-menu-item disabled>
+    <md-icon> voicemail </md-icon>
+    <span> Check voicemail </span>
+  </button>
+  <button md-menu-item>
+    <md-icon> notifications_off </md-icon>
+    <span> Disable alerts </span>
+  </button>
+  <button *ngFor="let menuItem of menuItems; let ind = index" md-menu-item>
+    <md-icon> {{menuItem.icon}} </md-icon>
+    <span> {{menuItem.desc}} </span>
+  </button>
+</md-menu>
+
+<md-card *ngFor="let photo of (photos? photos.slice(0,10) : []); let i = index;">
+  <md-card-header>
+  <div md-card-avatar [style.background-image]="'url('+photo.thumbnailUrl+')'"></div>
+  <md-card-subtitle>{{photo.title}}</md-card-subtitle>
+</md-card-header> <br>
+  <img md-card-image [src]="photo.url">
+  <md-card-content>
+  <p>
+  {{photo.title}}
+  </p>
+</md-card-content>
+</md-card>

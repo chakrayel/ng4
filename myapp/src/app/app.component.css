@@ -1,0 +1,21 @@
+/**
+you refer to html elements directly by their spelling, noitice there is no .
+**/
+h1 {
+  text-decoration: underline;
+  font-size: 2em
+}
+/**
+class names start with .
+**/
+.red-title {
+  color: red;
+}
+
+.title-h4 {
+  color: green;
+}
+
+.title-large-h4 {
+  font-size: 1em;
+}
